@@ -59,6 +59,15 @@ public class WeatherTest extends TestCase {
     }
 
     public void serverWeather(){
+        final User user = ess.getUser(base1);
 
+        //command label structure is unknown, assume arg structure is {"sun", "10"} where # is duration
+        try{
+            serverW.run(server, user, "/weather sun", null);
+            assertEquals(user.getWorld().isClearWeather(), true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
