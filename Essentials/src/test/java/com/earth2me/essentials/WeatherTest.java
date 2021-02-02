@@ -90,6 +90,8 @@ public class WeatherTest {
             runCommand("pweather",user, new String[] {"thunder", "testPlayer1"});
             Assert.assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.DOWNFALL.toString());
 
+            //TODO: test reset command
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,24 +99,26 @@ public class WeatherTest {
 
     @Test
     public void serverWeather(){
-//        final User user = ess.getUser(base1);
-//
-//        //command label structure is unknown, assume arg structure is {"sun", "10"} where # is duration
-//        try{
-//            serverW.run(server, user, "/weather sun", null);
-//            Assert.assertTrue(user.getWorld().isClearWeather());
-//
-//            //if above works, although haven't tested when arg != null
-//            serverW.run(server, user, "/weather clear", null);
-//            Assert.assertTrue(user.getWorld().isClearWeather());
-//            serverW.run(server, user, "/weather storm", null);
-//            Assert.assertFalse(user.getWorld().isClearWeather());
-//            serverW.run(server, user, "/weather thunder", null);
-//            Assert.assertFalse(user.getWorld().isClearWeather());
-//            //test reset command
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        final User user = ess.getUser(base1);
+
+        //command label structure is unknown, assume arg structure is {"sun", "10"} where # is duration
+        try{
+            //have to use console command since the command arg in the 1st run() expects weather setting in commandLabel
+            //runCommand() used label to find file
+            //serverW.run(server, user, "/weather sun", null);
+            runConsoleCommand("weather", new String[]{server.getName(), "sun"});
+            Assert.assertTrue(user.getWorld().isClearWeather());
+
+            //if above works, although haven't tested when arg != null
+            runConsoleCommand("weather", new String[]{server.getName(), "clear"});
+            Assert.assertTrue(user.getWorld().isClearWeather());
+            runConsoleCommand("weather", new String[]{server.getName(), "storm"});
+            Assert.assertFalse(user.getWorld().isClearWeather());
+            runConsoleCommand("weather", new String[]{server.getName(), "thunder"});
+            Assert.assertFalse(user.getWorld().isClearWeather());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
