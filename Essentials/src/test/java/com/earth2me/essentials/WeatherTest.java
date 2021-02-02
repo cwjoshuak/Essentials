@@ -52,6 +52,12 @@ public class WeatherTest extends TestCase {
             assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.CLEAR.toString());
 
             //if works, repeat for all cases
+            playerW.run(server, null, null, new String[]{"clear", "testPlayer1"});
+            assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.CLEAR.toString());
+            playerW.run(server, null, null, new String[]{"storm", "testPlayer1"});
+            assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.DOWNFALL.toString());
+            playerW.run(server, null, null, new String[]{"thunder", "testPlayer1"});
+            assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.DOWNFALL.toString());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +70,15 @@ public class WeatherTest extends TestCase {
         //command label structure is unknown, assume arg structure is {"sun", "10"} where # is duration
         try{
             serverW.run(server, user, "/weather sun", null);
-            assertEquals(user.getWorld().isClearWeather(), true);
+            assertTrue(user.getWorld().isClearWeather());
+
+            //if above works, although haven't tested when arg != null
+            serverW.run(server, user, "/weather clear", null);
+            assertTrue(user.getWorld().isClearWeather());
+            serverW.run(server, user, "/weather storm", null);
+            assertFalse(user.getWorld().isClearWeather());
+            serverW.run(server, user, "/weather thunder", null);
+            assertFalse(user.getWorld().isClearWeather());
 
         } catch (Exception e) {
             e.printStackTrace();
