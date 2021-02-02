@@ -16,7 +16,8 @@ import org.junit.Test;
 import org.junit.Assert;
 
 public class WeatherTest {
-    private final OfflinePlayer base1, base2;
+    private final OfflinePlayer base1;
+//    private final OfflinePlayer base2;
     private final Essentials ess;
     private final FakeServer server;
     private final Commandpweather playerW;
@@ -36,11 +37,11 @@ public class WeatherTest {
             Assert.fail("IOException");
         }
         base1 = server.createPlayer("testPlayer1");
-        base2 = server.createPlayer("testPlayer2");
+//        base2 = server.createPlayer("testPlayer2");
         server.addPlayer(base1);
-        server.addPlayer(base2);
+//        server.addPlayer(base2);
         ess.getUser(base1);
-        ess.getUser(base2);   //possibly not needed, only returns User?
+//        ess.getUser(base2);   //possibly not needed, only returns User?
 
         playerW = new Commandpweather();
         serverW = new Commandweather();
@@ -79,7 +80,7 @@ public class WeatherTest {
         //structure of call /pweather get *, or /pweather <weather condition> <target user>
         try{
             //playerW.run(server, null, null, new String[]{"sun", "testPlayer1"});
-            runCommand("pweather",user, new String[] {"sun", "testPlayer1"});
+            runCommand("pweather",user, new String[] {"sun", user.getBase().getName()});
             Assert.assertEquals(user.getBase().getPlayerWeather().toString().toLowerCase(Locale.ENGLISH), WeatherType.CLEAR.toString());
 
             //if works, repeat for all cases
@@ -106,15 +107,13 @@ public class WeatherTest {
             //have to use console command since the command arg in the 1st run() expects weather setting in commandLabel
             //runCommand() used label to find file
             //serverW.run(server, user, "/weather sun", null);
-            runConsoleCommand("weather", new String[]{server.getName(), "sun"});
+            runConsoleCommand("weather", new String[]{server.getWorld("testWorld").getName(),"sun"});
             Assert.assertTrue(user.getWorld().isClearWeather());
 
             //if above works, although haven't tested when arg != null
-            runConsoleCommand("weather", new String[]{server.getName(), "clear"});
+            runConsoleCommand("weather", new String[]{server.getWorld("testWorld").getName(),"clear"});
             Assert.assertTrue(user.getWorld().isClearWeather());
-            runConsoleCommand("weather", new String[]{server.getName(), "storm"});
-            Assert.assertFalse(user.getWorld().isClearWeather());
-            runConsoleCommand("weather", new String[]{server.getName(), "thunder"});
+            runConsoleCommand("weather", new String[]{server.getWorld("testWorld").getName(),"storm"});
             Assert.assertFalse(user.getWorld().isClearWeather());
 
         } catch (Exception e) {

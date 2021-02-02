@@ -53,7 +53,7 @@ import java.util.function.Predicate;
 public class FakeWorld implements World {
     private final String name;
     private final Environment env;
-
+    private boolean hasStorm = false;
     public FakeWorld(final String string, final Environment environment) {
         this.name = string;
         this.env = environment;
@@ -306,12 +306,14 @@ public class FakeWorld implements World {
 
     @Override
     public boolean hasStorm() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.hasStorm;
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void setStorm(final boolean bln) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.hasStorm = bln;
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -346,7 +348,8 @@ public class FakeWorld implements World {
 
     @Override
     public boolean isClearWeather() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.hasStorm == false;
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
