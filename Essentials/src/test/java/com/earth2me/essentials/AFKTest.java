@@ -133,4 +133,29 @@ public class AFKTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testServerCommandToggleAFK() {
+        final User user = ess.getUser(base1);
+
+        try {
+            user.setAfk(false); // set initial state
+
+            runConsoleCommand("afk", new String[] {user.getName()});
+            assertTrue(user.isAfk());
+
+            runConsoleCommand("afk", new String[] {user.getName()});
+            assertFalse(user.isAfk());
+
+            user.setAfk(true); // set opposite initial state
+            runConsoleCommand("afk", new String[] {user.getName()});
+            assertFalse(user.isAfk());
+
+            runConsoleCommand("afk", new String[] {user.getName()});
+            assertTrue(user.isAfk());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
