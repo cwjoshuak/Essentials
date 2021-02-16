@@ -56,13 +56,19 @@ public class UtilTest extends TestCase {
         final int diameter = LocationUtil.RADIUS * 2 + 1;
         assertEquals(diameter * diameter * diameter, count);
     }
-    public void testPDF(){
-        try {//test values
-            //DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", true);
-            //DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false);
+    public void testPDF(){      //ranges are a bit finicky
+        try {
+            //TEST FOR TIMES IN THE PAST
+            long est = System.currentTimeMillis()-DateUtil.parseDateDiff("1s", false);
+            assertTrue(est >= 500 && est <= 1000);
+            est = System.currentTimeMillis()-DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false);
+            assertTrue(est >= 40975371999L && est <= 41130743998L); //range of about 1.5 days off
 
-            System.out.println("future: "+DateUtil.parseDateDiff("1s", true));
-            System.out.println("past "+ DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false));
+            //TEST FOR VALUES IN THE FUTURE
+            est = DateUtil.parseDateDiff("1s", true)-System.currentTimeMillis();
+            assertTrue(est >= 1000 && est <= 1500);
+            est = DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", true)-System.currentTimeMillis();
+            assertTrue(est >= 40522572000L && est <= 41286115997L); //range of about a few days off
 
         } catch (Exception e) {
             e.printStackTrace();
