@@ -56,6 +56,18 @@ public class UtilTest extends TestCase {
         final int diameter = LocationUtil.RADIUS * 2 + 1;
         assertEquals(diameter * diameter * diameter, count);
     }
+    public void testPDF(){
+        try {//test values
+            //DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", true);
+            //DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false);
+
+            System.out.println("future: "+DateUtil.parseDateDiff("1s", true));
+            System.out.println("past "+ DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public void testFDDnow() {
         final Calendar c = new GregorianCalendar();
