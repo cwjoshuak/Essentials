@@ -105,16 +105,16 @@ public class WeatherTest {
         }
     }
 
-    @Test
-    public void setThunder(){
-        final User user = ess.getUser(base1);
-        try{
-            runConsoleCommand("weather", new String[]{server.getWorld("testWorld").getName(),"thunder"});
-            Assert.assertFalse(user.getWorld().isClearWeather());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    @Test
+//    public void setThunder(){
+//        final User user = ess.getUser(base1);
+//        try{
+//            runConsoleCommand("weather", new String[]{server.getWorld("testWorld").getName(),"thunder"});
+//            Assert.assertFalse(user.getWorld().isClearWeather());
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 //    @Test
 //    public void serverWeather(){
