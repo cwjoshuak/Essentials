@@ -1,6 +1,5 @@
 package com.earth2me.essentials;
 
-
 import com.earth2me.essentials.commands.IEssentialsCommand;
 import com.earth2me.essentials.commands.NoChargeException;
 import net.ess3.api.events.AfkStatusChangeEvent;
@@ -37,6 +36,7 @@ public class AFKTest {
         server.addPlayer(base1);
         ess.getUser(base1);
     }
+
     private void runCommand(final String command, final User user, final String[] args) throws Exception {
         final IEssentialsCommand cmd;
 

@@ -6,7 +6,6 @@ import com.earth2me.essentials.utils.VersionUtil;
 import junit.framework.TestCase;
 import org.bukkit.World.Environment;
 import org.bukkit.plugin.InvalidDescriptionException;
-
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -56,7 +55,8 @@ public class UtilTest extends TestCase {
         final int diameter = LocationUtil.RADIUS * 2 + 1;
         assertEquals(diameter * diameter * diameter, count);
     }
-    public void testPDF(){      //ranges are a bit finicky
+
+    public void testPDF(){ //ranges are a bit finicky
         try {
             //TEST FOR TIMES IN THE PAST
             long est = System.currentTimeMillis()-DateUtil.parseDateDiff("1s", false);
