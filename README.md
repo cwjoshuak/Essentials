@@ -6,6 +6,8 @@
 
 [<img alt="Patreon" src="https://img.shields.io/badge/-Support_on_Patreon-F96854.svg?logo=patreon&style=flat-square&logoColor=white" height=32>](https://www.patreon.com/essentialsx)
 
+[![Build EssentialsX](https://github.com/cwjoshuak/Essentials/actions/workflows/build.yml/badge.svg)](https://github.com/cwjoshuak/Essentials/actions/workflows/build.yml)
+
 This is a fork of Essentials called EssentialsX.
 
 If you are using this, do **NOT** ask Essentials for support.
