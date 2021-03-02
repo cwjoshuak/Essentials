@@ -5,7 +5,6 @@ import com.earth2me.essentials.commands.Commandweather;
 import com.earth2me.essentials.commands.IEssentialsCommand;
 import com.earth2me.essentials.commands.NoChargeException;
 import com.earth2me.essentials.craftbukkit.FakeWorld;
-import org.bukkit.Server;
 import org.bukkit.WeatherType;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -16,7 +15,8 @@ import java.util.UUID;
 
 import org.junit.Test;
 import org.junit.Assert;
-import org.mockito.*;
+import org.mockito.Mock;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -33,23 +33,20 @@ public class WeatherTest {
     @Mock
     Player mockedPlayer;
 
-
     FakeServer mockServer;
     FakeServer spyServer;
     World spyWorld;
+
     public WeatherTest(){
         //super(testName);
         mockServer = new FakeServer();
-//        mockServer.createWorld("mockWorld", World.Environment.NORMAL);
-        World w = new FakeWorld("mockWorld", World.Environment.NORMAL);
+        // mockServer.createWorld("mockWorld", World.Environment.NORMAL);
+        final World w = new FakeWorld("mockWorld", World.Environment.NORMAL);
         spyWorld = Mockito.spy(w);
         mockServer.addWorld(spyWorld);
         spyServer = Mockito.spy(mockServer);
         ess1 = new Essentials(spyServer);
-
-
-//        spyServer.createWorld("mockWorld", World.Environment.NORMAL);
-
+        // spyServer.createWorld("mockWorld", World.Environment.NORMAL);
         server = new FakeServer();
         server.createWorld("testWorld", World.Environment.NORMAL);
         ess = new Essentials(server);
@@ -126,6 +123,7 @@ public class WeatherTest {
         }
 
     }
+
     @Test
     public void setSun(){
         final User user = ess.getUser(base1);
@@ -161,7 +159,6 @@ public class WeatherTest {
 
     @Test
     public void testSpyServerSetWeather() {
-        final User user = ess.getUser(mockedPlayer);
 
         try {
             runConsoleCommandOnSpyServer("weather", new String[]{spyServer.getWorld("mockWorld").getName(),"storm"});
