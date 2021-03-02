@@ -62,13 +62,13 @@ public class UtilTest extends TestCase {
             long est = System.currentTimeMillis()-DateUtil.parseDateDiff("1s", false);
             assertTrue(est >= 500 && est <= 1000);
             est = System.currentTimeMillis()-DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", false);
-            assertTrue(est >= 40888971999L && est <= 41130743998L); //range of about 2.5 days off
+            assertTrue(est >= 40798962000L && est <= 41130743998L); //range of couple days off
 
             //TEST FOR VALUES IN THE FUTURE
             est = DateUtil.parseDateDiff("1s", true)-System.currentTimeMillis();
             assertTrue(est >= 500 && est <= 1500);
             est = DateUtil.parseDateDiff("1y3mo2w2d5h2m52s", true)-System.currentTimeMillis();
-            assertTrue(est >= 40522572000L && est <= 41286115997L); //range of about a few days off
+            assertTrue(est >= 40522572000L && est <= 41286115997L); //range of couple days off
 
         } catch (Exception e) {
             e.printStackTrace();
