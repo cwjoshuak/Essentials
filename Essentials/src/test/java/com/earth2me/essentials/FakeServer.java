@@ -363,6 +363,10 @@ public class FakeServer implements Server {
         return worlds;
     }
 
+    public void addWorld(World w) {
+        worlds.add(w);
+    }
+
     public World createWorld(final String string, final Environment e) {
         final World w = new FakeWorld(string, e);
         worlds.add(w);
