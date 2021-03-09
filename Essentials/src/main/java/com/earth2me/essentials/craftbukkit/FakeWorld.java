@@ -39,6 +39,7 @@ import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.BoundingBox;
+import org.bukkit.util.Consumer;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
@@ -211,8 +212,18 @@ public class FakeWorld implements World {
     }
 
     @Override
+    public Item dropItem(Location location, ItemStack item, Consumer<Item> function) {
+        return null;
+    }
+
+    @Override
     public Item dropItemNaturally(final Location lctn, final ItemStack is) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public Item dropItemNaturally(Location location, ItemStack item, Consumer<Item> function) {
+        return null;
     }
 
     @Override
